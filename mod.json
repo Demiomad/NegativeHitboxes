@@ -1,0 +1,52 @@
+{
+	"geode": "5.7.1",
+	"settings": {
+		"disable-mod": {
+			"type": "bool",
+			"name": "Disable Mod",
+			"description": "Disables the mod without having to restart the game.",
+			"default": false
+		},
+		"object-types-title": {
+			"type": "title",
+			"name": "Object Types"
+		},
+		"ignore-solids": {
+			"type": "bool",
+			"name": "Ignore Solids",
+			"description": "If enabled, ignores solid objects (blocks, slabs, etc.)",
+			"default": false
+		},
+		"ignore-hazards": {
+			"type": "bool",
+			"name": "Ignore Hazards",
+			"description": "If enabled, ignores hazard objects (spikes, saws, etc.)",
+			"default": false
+		},
+		"visual-title": {
+			"type": "title",
+			"name": "Visual"
+		},
+		"hide-visual-scale": {
+			"type": "bool",
+			"name": "Hide Visual Scale",
+			"description": "If enabled, makes the affected objects look normal.",
+			"default": false
+		}
+	},
+	"gd": {
+		"win": "2.2081",
+		"android": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081"
+	},
+	"id": "demiomad.negative-hitboxes",
+	"name": "Negative Hitboxes",
+	"version": "v1.0.0",
+	"developer": "Demiomad",
+	"description": "But is it possible with negative hitboxes?",
+	"dependencies": {
+		"geode.node-ids": ">=v1.23.3"
+	},
+	"tags": ["joke", "gameplay"]
+}

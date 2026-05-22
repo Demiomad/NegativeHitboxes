@@ -38,5 +38,8 @@
 	"dependencies": {
 		"geode.node-ids": ">=v1.23.3"
 	},
-	"tags": ["joke", "gameplay"]
+	"tags": ["joke", "gameplay"],
+	"links": {
+		"source": "https://github.com/Demiomad/NegativeHitboxes"
+	}
 }

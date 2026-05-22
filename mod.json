@@ -35,9 +35,6 @@
 	"version": "v1.0.1",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
-	"dependencies": {
-		"geode.node-ids": ">=v1.23.3"
-	},
 	"tags": ["joke", "gameplay"],
 	"links": {
 		"source": "https://github.com/Demiomad/NegativeHitboxes"

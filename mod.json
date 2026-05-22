@@ -22,16 +22,6 @@
 			"name": "Ignore Hazards",
 			"description": "If enabled, ignores hazard objects (spikes, saws, etc.)",
 			"default": false
-		},
-		"visual-title": {
-			"type": "title",
-			"name": "Visual"
-		},
-		"hide-visual-scale": {
-			"type": "bool",
-			"name": "Hide Visual Scale",
-			"description": "If enabled, makes the affected objects look normal.",
-			"default": false
 		}
 	},
 	"gd": {
@@ -42,7 +32,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.0.0",
+	"version": "v1.0.1",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"dependencies": {

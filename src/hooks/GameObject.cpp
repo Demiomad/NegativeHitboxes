@@ -25,15 +25,6 @@ class $modify(NHGameObject, GameObject) {
 
             m_scaleX = -m_scaleX;
             m_scaleY = -m_scaleY;
-
-            bool hideVisualScale = Mod::get()->getSettingValue<bool>("hide-visual-scale");
-            if (hideVisualScale) {
-                auto visualScaleX = getScaleX();
-                auto visualScaleY = getScaleY();
-
-                setScaleX(-visualScaleX);
-                setScaleY(-visualScaleY);
-            }
         }
     }
 };

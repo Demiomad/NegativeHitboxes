@@ -1,9 +1,12 @@
 #include <Geode/Geode.hpp>
 #include <Geode/modify/GameObject.hpp>
+
+#include "../Utils.hpp"
+
 using namespace geode::prelude;
 
 class $modify(NHGameObject, GameObject) {
-    void activateObject() {
+    void activateObject() override {
         GameObject::activateObject();
 
         bool modDisabled = Mod::get()->getSettingValue<bool>("disable-mod");
@@ -12,12 +15,7 @@ class $modify(NHGameObject, GameObject) {
         bool isPositive = m_scaleX > 0 && m_scaleY > 0;
 
         if (isPositive && m_objectType != GameObjectType::Decoration) {
-            bool ignoreSolids = Mod::get()->getSettingValue<bool>("ignore-solids");
-            if (ignoreSolids && m_objectType == GameObjectType::Solid)
-                return;
-
-            bool ignoreHazards = Mod::get()->getSettingValue<bool>("ignore-hazards");
-            if (ignoreHazards && m_objectType == GameObjectType::Hazard)
+            if (shouldIgnoreObject(this))
                 return;
 
             log::debug("Scale: {}, {}", m_scaleX, m_scaleY);

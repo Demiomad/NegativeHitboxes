@@ -22,6 +22,24 @@
 			"name": "Ignore Hazards",
 			"description": "If enabled, ignores hazard objects (spikes, saws, etc.)",
 			"default": false
+		},
+		"ignore-rings": {
+			"type": "bool",
+			"name": "Ignore Orbs",
+			"description": "If enabled, ignores orbs.",
+			"default": false
+		},
+		"ignore-portals": {
+			"type": "bool",
+			"name": "Ignore Portals",
+			"description": "If enabled, ignores portals.",
+			"default": false
+		},
+		"ignore-pads": {
+			"type": "bool",
+			"name": "Ignore Pads",
+			"description": "If enabled, ignores pads.",
+			"default": false
 		}
 	},
 	"gd": {
@@ -32,7 +50,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.0.1",
+	"version": "v1.1.0",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],

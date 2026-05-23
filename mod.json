@@ -60,7 +60,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.2.0",
+	"version": "v1.2.1",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],

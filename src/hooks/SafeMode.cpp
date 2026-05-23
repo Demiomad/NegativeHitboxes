@@ -16,8 +16,8 @@ class $modify(SMLevelInfoLayer, LevelInfoLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            m_fields->m_shownPopup = true;
             showSafeModePopup(sender, [this](auto sender) {
+                m_fields->m_shownPopup = true;
                 LevelInfoLayer::onPlay(sender);
             });
         }
@@ -33,8 +33,8 @@ class $modify(SMLevelPage, LevelPage) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            m_fields->m_shownPopup = true;
             showSafeModePopup(sender, [this](auto sender) {
+                m_fields->m_shownPopup = true;
                 LevelPage::onPlay(sender);
             });
         }
@@ -50,8 +50,8 @@ class $modify(SMEditLevelLayer, EditLevelLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            m_fields->m_shownPopup = true;
             showSafeModePopup(sender, [this](auto sender) {
+                m_fields->m_shownPopup = true;
                 EditLevelLayer::onPlay(sender);
             });
         }

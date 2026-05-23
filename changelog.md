@@ -1,3 +1,6 @@
+# 1.2.1
+- Fix being able to bypass the Safe Mode popup by clicking "No" and playing anyway.
+
 # 1.2.0
 - Add "Safe Mode"
 

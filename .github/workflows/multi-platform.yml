@@ -22,19 +22,21 @@ jobs:
           os: macos-latest
           target: iOS
 
-        - name: Android32
+        - name: Android 32-bit
           os: ubuntu-latest
           target: Android32
 
-        - name: Android64
+        - name: Android 64-bit
           os: ubuntu-latest
           target: Android64
 
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
+    env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main

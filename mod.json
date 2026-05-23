@@ -40,6 +40,16 @@
 			"name": "Ignore Pads",
 			"description": "If enabled, ignores pads.",
 			"default": false
+		},
+		"other-title": {
+			"type": "title",
+			"name": "Miscellaneous"
+		},
+		"safe-mode": {
+			"type": "bool",
+			"name": "Safe Mode",
+			"description": "If enabled, prevents stats from being saved.",
+			"default": true
 		}
 	},
 	"gd": {
@@ -50,7 +60,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.1.0",
+	"version": "v1.2.0",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],

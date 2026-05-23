@@ -4,12 +4,12 @@
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
-static const GameObjectType solids[] {
+inline const GameObjectType solids[] {
     GameObjectType::Solid,
     GameObjectType::Slope,
 };
 
-static const GameObjectType portals[] {
+inline const GameObjectType portals[] {
     GameObjectType::CubePortal,
     GameObjectType::ShipPortal,
     GameObjectType::BallPortal,
@@ -27,7 +27,7 @@ static const GameObjectType portals[] {
     GameObjectType::SoloPortal
 };
 
-static const GameObjectType pads[] {
+inline const GameObjectType pads[] {
     GameObjectType::GravityPad,
     GameObjectType::YellowJumpPad,
     GameObjectType::PinkJumpPad,
@@ -36,7 +36,7 @@ static const GameObjectType pads[] {
 };
 
 // GD calls them rings
-static const GameObjectType rings[] {
+inline const GameObjectType rings[] {
     GameObjectType::RedJumpRing,
     GameObjectType::YellowJumpRing,
     GameObjectType::PinkJumpRing,
@@ -47,13 +47,12 @@ static const GameObjectType rings[] {
     GameObjectType::CustomRing,
 };
 
-
-static const GameObjectType hazards[] {
+inline const GameObjectType hazards[] {
     GameObjectType::Hazard,
     GameObjectType::AnimatedHazard
 };
 
-bool shouldIgnoreObject(GameObject* obj) {
+inline bool shouldIgnoreObject(GameObject* obj) {
     auto mod = Mod::get();
     auto type = obj->m_objectType;
 
@@ -93,5 +92,31 @@ bool shouldIgnoreObject(GameObject* obj) {
     }
 
     return false;
+}
+
+inline bool isSafeModeEnabled() {
+    auto mod = Mod::get();
+    bool safeMode = mod->getSettingValue<bool>("safe-mode");
+    bool disableMod = mod->getSettingValue<bool>("disable-mod");
+
+    return safeMode && !disableMod;
+}
+
+inline void showSafeModePopup(CCObject* sender, std::function<void(CCObject*)> onYes) {
+    if (isSafeModeEnabled()) {
+        createQuickPopup(
+            "Heads up!",
+            "<cy>Safe Mode</c> is <cr>enabled.</c>\n\n"
+            "This means that your stats will <cr>not</c> save.\nThis is done to prevent <cr>cheating.</c>\n\n"
+            "Would you still like to play this level? (With <cy>Safe Mode</c> <cg>on</c>, obviously)",
+            "No", "Yes",
+            [onYes, sender](auto, bool button2) {
+                if (button2)
+                    onYes(sender);
+            }
+        );
+    }
+    else
+        onYes(sender);
 }
 #endif

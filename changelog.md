@@ -1,3 +1,8 @@
+# 1.3.0
+- Prevent attempts from going negative. Yes this was a real bug.
+- Trigger Safe Mode warning on The Tower level doors.
+- Add some voicelines for when you enter a level.
+
 # 1.2.1
 - Fix being able to bypass the Safe Mode popup by clicking "No" and playing anyway.
 

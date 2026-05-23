@@ -4,6 +4,7 @@
 #include <Geode/modify/EditLevelLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
+#include <Geode/modify/LevelAreaInnerLayer.hpp>
 
 #include "../Utils.hpp"
 
@@ -20,9 +21,12 @@ class $modify(SMLevelInfoLayer, LevelInfoLayer) {
                 m_fields->m_shownPopup = true;
                 LevelInfoLayer::onPlay(sender);
             });
+
+            return;
         }
-        else
-            LevelInfoLayer::onPlay(sender);
+
+        playRandomVoiceline();
+        LevelInfoLayer::onPlay(sender);
     }
 };
 
@@ -37,9 +41,12 @@ class $modify(SMLevelPage, LevelPage) {
                 m_fields->m_shownPopup = true;
                 LevelPage::onPlay(sender);
             });
+
+            return;
         }
-        else
-            LevelPage::onPlay(sender);
+
+        playRandomVoiceline();
+        LevelPage::onPlay(sender);
     }
 };
 
@@ -54,9 +61,12 @@ class $modify(SMEditLevelLayer, EditLevelLayer) {
                 m_fields->m_shownPopup = true;
                 EditLevelLayer::onPlay(sender);
             });
+
+            return;
         }
-        else
-            EditLevelLayer::onPlay(sender);
+
+        playRandomVoiceline();
+        EditLevelLayer::onPlay(sender);
     }
 };
 
@@ -74,7 +84,7 @@ class $modify(SMPlayLayer, PlayLayer) {
     };
 
     void resetLevel() {
-        if (isSafeModeEnabled())
+        if (isSafeModeEnabled() && m_level->m_attempts > 0)
             m_level->m_attempts = m_level->m_attempts - 1;
 
         PlayLayer::resetLevel();
@@ -117,5 +127,24 @@ class $modify(SMPlayLayer, PlayLayer) {
         PlayLayer::levelComplete();
 
         m_isTestMode = original;
+    }
+};
+
+class $modify(SMLevelAreaInnerLayer, LevelAreaInnerLayer) {
+    struct Fields {
+        bool m_shownPopup = false;
+    };
+
+    void onDoor(CCObject* sender) {
+        if (!m_fields->m_shownPopup) {
+            showSafeModePopup(sender, [this](auto sender) {
+                m_fields->m_shownPopup = true;
+                LevelAreaInnerLayer::onDoor(sender);
+            });
+            return;
+        }
+
+        playRandomVoiceline();
+        LevelAreaInnerLayer::onDoor(sender);
     }
 };

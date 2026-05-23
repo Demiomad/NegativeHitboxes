@@ -11,3 +11,6 @@ Because.
 
 ## But is it even possible?
 Depends on the level, really.
+
+## What's "Enable Voicelines"?
+It's a setting that plays a <cg>random</c> audio clip when you enter a level. Most of the clips are from Geo's videos, so credit to him.

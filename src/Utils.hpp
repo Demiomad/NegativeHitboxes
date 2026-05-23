@@ -4,55 +4,55 @@
 #include <Geode/Geode.hpp>
 using namespace geode::prelude;
 
-inline const GameObjectType solids[] {
-    GameObjectType::Solid,
-    GameObjectType::Slope,
-};
-
-inline const GameObjectType portals[] {
-    GameObjectType::CubePortal,
-    GameObjectType::ShipPortal,
-    GameObjectType::BallPortal,
-    GameObjectType::UfoPortal,
-    GameObjectType::WavePortal,
-    GameObjectType::SpiderPortal,
-    GameObjectType::SwingPortal,
-    GameObjectType::MiniSizePortal,
-    GameObjectType::DualPortal,
-    GameObjectType::GravityTogglePortal,
-    GameObjectType::InverseGravityPortal,
-    GameObjectType::NormalGravityPortal,
-    GameObjectType::TeleportPortal,
-    GameObjectType::NormalMirrorPortal,
-    GameObjectType::SoloPortal
-};
-
-inline const GameObjectType pads[] {
-    GameObjectType::GravityPad,
-    GameObjectType::YellowJumpPad,
-    GameObjectType::PinkJumpPad,
-    GameObjectType::RedJumpPad,
-    GameObjectType::SpiderPad,
-};
-
-// GD calls them rings
-inline const GameObjectType rings[] {
-    GameObjectType::RedJumpRing,
-    GameObjectType::YellowJumpRing,
-    GameObjectType::PinkJumpRing,
-    GameObjectType::GravityRing,
-    GameObjectType::DashRing,
-    GameObjectType::GreenRing,
-    GameObjectType::DropRing,
-    GameObjectType::CustomRing,
-};
-
-inline const GameObjectType hazards[] {
-    GameObjectType::Hazard,
-    GameObjectType::AnimatedHazard
-};
-
 inline bool shouldIgnoreObject(GameObject* obj) {
+    const GameObjectType solids[] {
+        GameObjectType::Solid,
+        GameObjectType::Slope,
+    };
+
+    const GameObjectType portals[] {
+        GameObjectType::CubePortal,
+        GameObjectType::ShipPortal,
+        GameObjectType::BallPortal,
+        GameObjectType::UfoPortal,
+        GameObjectType::WavePortal,
+        GameObjectType::SpiderPortal,
+        GameObjectType::SwingPortal,
+        GameObjectType::MiniSizePortal,
+        GameObjectType::DualPortal,
+        GameObjectType::GravityTogglePortal,
+        GameObjectType::InverseGravityPortal,
+        GameObjectType::NormalGravityPortal,
+        GameObjectType::TeleportPortal,
+        GameObjectType::NormalMirrorPortal,
+        GameObjectType::SoloPortal
+    };
+
+    const GameObjectType pads[] {
+        GameObjectType::GravityPad,
+        GameObjectType::YellowJumpPad,
+        GameObjectType::PinkJumpPad,
+        GameObjectType::RedJumpPad,
+        GameObjectType::SpiderPad,
+    };
+
+    // GD calls them rings
+    const GameObjectType rings[] {
+        GameObjectType::RedJumpRing,
+        GameObjectType::YellowJumpRing,
+        GameObjectType::PinkJumpRing,
+        GameObjectType::GravityRing,
+        GameObjectType::DashRing,
+        GameObjectType::GreenRing,
+        GameObjectType::DropRing,
+        GameObjectType::CustomRing,
+    };
+
+    const GameObjectType hazards[] {
+        GameObjectType::Hazard,
+        GameObjectType::AnimatedHazard
+    };
+
     auto mod = Mod::get();
     auto type = obj->m_objectType;
 
@@ -96,10 +96,37 @@ inline bool shouldIgnoreObject(GameObject* obj) {
 
 inline bool isSafeModeEnabled() {
     auto mod = Mod::get();
-    bool safeMode = mod->getSettingValue<bool>("safe-mode");
-    bool disableMod = mod->getSettingValue<bool>("disable-mod");
+    auto safeMode = mod->getSettingValue<bool>("safe-mode");
+    auto disableMod = mod->getSettingValue<bool>("disable-mod");
 
     return safeMode && !disableMod;
+}
+
+inline int getRandomNumber(int min = 0, int max = 1) {
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_int_distribution<int> dist(min, max);
+    return dist(rng);
+}
+
+inline std::string getRandomVoiceline() {
+    auto mod = Mod::get();
+    auto resourcesPath = mod->getResourcesDir();
+    auto fileName = "geo" + numToString(getRandomNumber(1, 3)) + ".ogg";
+    auto path = resourcesPath / fileName;
+
+    log::debug("Resources dir: {}", resourcesPath);
+    log::debug("Path: {}", path);
+    return path.string();
+}
+
+inline void playRandomVoiceline() {
+    auto mod = Mod::get();
+    auto voicelinesEnabled = mod->getSettingValue<bool>("voicelines");
+
+    if (voicelinesEnabled) {
+        auto engine = FMODAudioEngine::sharedEngine();
+        engine->playEffect(getRandomVoiceline());
+    }
 }
 
 inline void showSafeModePopup(CCObject* sender, std::function<void(CCObject*)> onYes) {
@@ -107,16 +134,21 @@ inline void showSafeModePopup(CCObject* sender, std::function<void(CCObject*)> o
         createQuickPopup(
             "Heads up!",
             "<cy>Safe Mode</c> is <cr>enabled.</c>\n\n"
-            "This means that your stats will <cr>not</c> save.\nThis is done to prevent <cr>cheating.</c>\n\n"
-            "Would you still like to play this level? (With <cy>Safe Mode</c> <cg>on</c>, obviously)",
+            "This means that your stats will <cr>not</c> be saved.\n"
+            "This is done to prevent <cr>cheating.</c>\n\n"
+            "Would you still like to play this level?",
             "No", "Yes",
             [onYes, sender](auto, bool button2) {
-                if (button2)
+                if (button2) {
                     onYes(sender);
+                    playRandomVoiceline();
+                }
             }
         );
     }
-    else
+    else {
         onYes(sender);
+        playRandomVoiceline();
+    }
 }
 #endif

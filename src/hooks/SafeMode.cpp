@@ -17,7 +17,7 @@ class $modify(SMLevelInfoLayer, LevelInfoLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
                 m_fields->m_shownPopup = true;
                 LevelInfoLayer::onPlay(sender);
             });
@@ -25,7 +25,6 @@ class $modify(SMLevelInfoLayer, LevelInfoLayer) {
             return;
         }
 
-        playRandomVoiceline();
         LevelInfoLayer::onPlay(sender);
     }
 };
@@ -37,7 +36,7 @@ class $modify(SMLevelPage, LevelPage) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
                 m_fields->m_shownPopup = true;
                 LevelPage::onPlay(sender);
             });
@@ -45,7 +44,6 @@ class $modify(SMLevelPage, LevelPage) {
             return;
         }
 
-        playRandomVoiceline();
         LevelPage::onPlay(sender);
     }
 };
@@ -57,7 +55,7 @@ class $modify(SMEditLevelLayer, EditLevelLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
                 m_fields->m_shownPopup = true;
                 EditLevelLayer::onPlay(sender);
             });
@@ -65,14 +63,13 @@ class $modify(SMEditLevelLayer, EditLevelLayer) {
             return;
         }
 
-        playRandomVoiceline();
         EditLevelLayer::onPlay(sender);
     }
 };
 
 class $modify(SMPlayerObject, PlayerObject) {
     void incrementJumps() {
-        if (!isSafeModeEnabled())
+        if (!NegativeHitboxes::Utils::isSafeModeEnabled())
             PlayerObject::incrementJumps();
     }
 };
@@ -84,7 +81,7 @@ class $modify(SMPlayLayer, PlayLayer) {
     };
 
     void resetLevel() {
-        if (isSafeModeEnabled() && m_level->m_attempts > 0)
+        if (NegativeHitboxes::Utils::isSafeModeEnabled() && m_level->m_attempts > 0)
             m_level->m_attempts = m_level->m_attempts - 1;
 
         PlayLayer::resetLevel();
@@ -93,7 +90,7 @@ class $modify(SMPlayLayer, PlayLayer) {
     void destroyPlayer(PlayerObject *player, GameObject *object) {
         bool original = m_isTestMode;
 
-        if (isSafeModeEnabled()) {
+        if (NegativeHitboxes::Utils::isSafeModeEnabled()) {
             m_isTestMode = true;
 
             auto statsMan = GameStatsManager::get();
@@ -106,7 +103,7 @@ class $modify(SMPlayLayer, PlayLayer) {
     }
 
     bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
-        if (isSafeModeEnabled()) {
+        if (NegativeHitboxes::Utils::isSafeModeEnabled()) {
             auto statsMan = GameStatsManager::get();
             m_fields->m_oldAttempts = statsMan->getStatFromKey(StatKey::Attempts);
             m_fields->m_oldJumps = statsMan->getStatFromKey(StatKey::Jumps);
@@ -121,7 +118,7 @@ class $modify(SMPlayLayer, PlayLayer) {
     void levelComplete() {
         bool original = m_isTestMode;
 
-        if (isSafeModeEnabled())
+        if (NegativeHitboxes::Utils::isSafeModeEnabled())
             m_isTestMode = true;
 
         PlayLayer::levelComplete();
@@ -137,14 +134,14 @@ class $modify(SMLevelAreaInnerLayer, LevelAreaInnerLayer) {
 
     void onDoor(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
                 m_fields->m_shownPopup = true;
                 LevelAreaInnerLayer::onDoor(sender);
             });
+
             return;
         }
 
-        playRandomVoiceline();
         LevelAreaInnerLayer::onDoor(sender);
     }
 };

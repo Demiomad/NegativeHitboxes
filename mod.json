@@ -1,12 +1,6 @@
 {
 	"geode": "5.7.1",
 	"settings": {
-		"disable-mod": {
-			"type": "bool",
-			"name": "Disable Mod",
-			"description": "Disables the mod without having to restart the game.",
-			"default": false
-		},
 		"object-types-title": {
 			"type": "title",
 			"name": "Object Types"
@@ -66,7 +60,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.3.1",
+	"version": "v1.4.0",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],
@@ -77,5 +71,11 @@
 		"files": [
 			"resources/audio/voicelines/*.ogg"
 		]
+	},
+	"dependencies": {
+		"eclipse.eclipse-menu": {
+			"version": ">=v1.9.4",
+			"required": false
+		}
 	}
 }

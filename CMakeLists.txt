@@ -16,6 +16,7 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES}
         src/hooks/GameObject.cpp
         src/Utils.hpp
         src/hooks/SafeMode.cpp
+        src/EclipseIntegration.cpp
 )
 
 if (NOT DEFINED ENV{GEODE_SDK})

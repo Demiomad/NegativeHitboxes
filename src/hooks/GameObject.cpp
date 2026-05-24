@@ -15,7 +15,7 @@ class $modify(NHGameObject, GameObject) {
         bool isPositive = m_scaleX > 0 && m_scaleY > 0;
 
         if (isPositive && m_objectType != GameObjectType::Decoration) {
-            if (shouldIgnoreObject(this))
+            if (NegativeHitboxes::Utils::shouldIgnoreObject(this))
                 return;
 
             log::debug("Scale: {}, {}", m_scaleX, m_scaleY);

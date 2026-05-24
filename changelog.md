@@ -1,7 +1,7 @@
 # 1.4.0
 - Remove the ability to disable the mod through the mod's settings. Use <cy>Geode's</c> toggle instead.
 - Add two new voicelines.
-- Add Eclipse![betterIcon.png](../../Misc/betterIcon.png) integration.
+- Add Eclipse integration.
 - Prevent voicelines from sometimes playing twice.
 - New mod icon.
 

@@ -1,3 +1,7 @@
+# 1.3.1
+- Add `GameObjectType::SpiderOrb` and `GameObjectType::TeleportOrb` to ignored orbs list.
+- Fix cross-platform path handling.
+
 # 1.3.0
 - Prevent attempts from going negative. Yes this was a real bug.
 - Trigger Safe Mode warning on The Tower level doors.

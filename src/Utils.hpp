@@ -46,6 +46,8 @@ inline bool shouldIgnoreObject(GameObject* obj) {
         GameObjectType::GreenRing,
         GameObjectType::DropRing,
         GameObjectType::CustomRing,
+        GameObjectType::SpiderOrb,
+        GameObjectType::TeleportOrb,
     };
 
     const GameObjectType hazards[] {
@@ -116,7 +118,7 @@ inline std::string getRandomVoiceline() {
 
     log::debug("Resources dir: {}", resourcesPath);
     log::debug("Path: {}", path);
-    return path.string();
+    return string::pathToString(path); // this uses geode::utils::string::pathToString()
 }
 
 inline void playRandomVoiceline() {

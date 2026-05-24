@@ -9,8 +9,8 @@ class $modify(NHGameObject, GameObject) {
     void activateObject() override {
         GameObject::activateObject();
 
-        bool modDisabled = Mod::get()->getSettingValue<bool>("disable-mod");
-        if (m_editorEnabled || modDisabled) return;
+        if (m_editorEnabled || !NegativeHitboxes::Utils::isModEnabled())
+            return;
 
         bool isPositive = m_scaleX > 0 && m_scaleY > 0;
 

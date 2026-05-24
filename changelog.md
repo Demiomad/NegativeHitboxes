@@ -1,3 +1,7 @@
+# 1.5.0
+- Add the ability to disable the mod back.
+- Add more toggles in the Eclipse tab.
+
 # 1.4.0
 - Remove the ability to disable the mod through the mod's settings. Use <cy>Geode's</c> toggle instead.
 - Add two new voicelines.

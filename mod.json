@@ -1,6 +1,12 @@
 {
 	"geode": "5.7.1",
 	"settings": {
+		"enable-mod": {
+			"type": "bool",
+			"name": "Enable Mod",
+			"description": "Self explanatory. Enables the mod without having to restart your game.",
+			"default": true
+		},
 		"object-types-title": {
 			"type": "title",
 			"name": "Object Types"
@@ -60,7 +66,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.4.0",
+	"version": "v1.5.0",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],

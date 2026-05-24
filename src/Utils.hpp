@@ -104,11 +104,16 @@ namespace NegativeHitboxes::Utils {
         return false;
     }
 
+    inline bool isModEnabled() {
+        auto mod = Mod::get();
+        return mod->getSettingValue<bool>("enable-mod");
+    }
+
     inline bool isSafeModeEnabled() {
         auto mod = Mod::get();
         auto safeMode = mod->getSettingValue<bool>("safe-mode");
 
-        return safeMode;
+        return safeMode && isModEnabled();
     }
 
     inline int getRandomNumber(int min = 0, int max = 1) {

@@ -135,7 +135,7 @@ namespace NegativeHitboxes::Utils {
 
     inline void playRandomVoiceline() {
         auto mod = Mod::get();
-        auto voicelinesEnabled = mod->getSettingValue<bool>("voicelines");
+        auto voicelinesEnabled = mod->getSettingValue<bool>("voicelines") && isModEnabled();
 
         if (voicelinesEnabled) {
             auto engine = FMODAudioEngine::sharedEngine();

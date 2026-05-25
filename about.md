@@ -14,3 +14,6 @@ Depends on the level, really.
 
 ## What's "Enable Voicelines"?
 It's a setting that plays a <cg>random</c> audio clip when you enter a level. Most of the clips are from Geo's videos, so credit to him.
+
+## Why does Safe Mode exist?
+Some levels become easier, which is technically <cr>cheating</c>. You can turn it off in settings, though.

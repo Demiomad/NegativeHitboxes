@@ -1,3 +1,6 @@
+# 1.5.1
+- Prevent voicelines from playing when the mod isn't enabled.
+
 # 1.5.0
 - Add the ability to disable the mod back.
 - Add more toggles in the Eclipse tab.

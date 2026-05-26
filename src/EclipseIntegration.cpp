@@ -27,7 +27,7 @@ $on_mod(Loaded) {
         tab.addToggle("nh-enabled", "Enabled", [](bool value) {
             auto mod = Mod::get();
             mod->setSettingValue("enable-mod", value);
-        }).setDescription("Inverts the level's hitboxes. Takes effect on a new level entry.");
+        }).setDescription("Inverts the level's hitboxes. It is recommended to re-enter the level, but not required.");
 
         tab.addToggle("nh-safe-mode", "Safe Mode", [](bool value) {
             auto mod = Mod::get();

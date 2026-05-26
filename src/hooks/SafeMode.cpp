@@ -5,6 +5,7 @@
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/PlayerObject.hpp>
 #include <Geode/modify/LevelAreaInnerLayer.hpp>
+#include <Geode/modify/SecretLayer2.hpp>
 
 #include "../Utils.hpp"
 
@@ -143,5 +144,24 @@ class $modify(SMLevelAreaInnerLayer, LevelAreaInnerLayer) {
         }
 
         LevelAreaInnerLayer::onDoor(sender);
+    }
+};
+
+class $modify(SMSecretLayer2, SecretLayer2) {
+        struct Fields {
+        bool m_shownPopup = false;
+    };
+
+    void onSecretLevel(CCObject* sender) {
+        if (!m_fields->m_shownPopup) {
+            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+                m_fields->m_shownPopup = true;
+                SecretLayer2::onSecretLevel(sender);
+            });
+
+            return;
+        }
+
+        SecretLayer2::onSecretLevel(sender);
     }
 };

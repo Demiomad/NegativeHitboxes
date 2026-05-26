@@ -1,3 +1,7 @@
+# 1.6.0
+- Trigger Safe Mode warning on before entering "The Challenge"
+- Improved the wording of the "Enable" toggle description in the Eclipse tab.
+
 # 1.5.1
 - Prevent voicelines from playing when the mod isn't enabled.
 

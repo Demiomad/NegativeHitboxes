@@ -51,6 +51,12 @@
 			"description": "If enabled, prevents stats from being saved.",
 			"default": true
 		},
+		"safe-mode-warning": {
+			"type": "bool",
+			"name": "Safe Mode Warning",
+			"description": "If enabled, shows a warning when Safe Mode is enabled.",
+			"default": true
+		},
 		"voicelines": {
 			"type": "bool",
 			"name": "Voicelines",
@@ -66,7 +72,7 @@
 	},
 	"id": "demiomad.negative-hitboxes",
 	"name": "Negative Hitboxes",
-	"version": "v1.6.0",
+	"version": "v1.7.0",
 	"developer": "Demiomad",
 	"description": "But is it possible with negative hitboxes?",
 	"tags": ["joke", "gameplay"],

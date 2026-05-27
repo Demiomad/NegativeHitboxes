@@ -116,6 +116,13 @@ namespace NegativeHitboxes::Utils {
         return safeMode && isModEnabled();
     }
 
+    inline bool shouldShowSafeModeWarning() {
+        auto mod = Mod::get();
+        auto safeModeWarning = mod->getSettingValue<bool>("safe-mode-warning");
+
+        return isSafeModeEnabled() && safeModeWarning;
+    }
+
     inline int getRandomNumber(int min = 0, int max = 1) {
         std::mt19937 rng(std::random_device{}());
         std::uniform_int_distribution<int> dist(min, max);
@@ -143,25 +150,26 @@ namespace NegativeHitboxes::Utils {
         }
     }
 
-    inline void showSafeModePopup(CCObject* sender, std::function<void(CCObject*)> onYes) {
-        if (isSafeModeEnabled()) {
+    inline void showSafeModeWarning(std::function<void()> onYes) {
+        if (shouldShowSafeModeWarning()) {
             createQuickPopup(
                 "Heads up!",
                 "<cy>Safe Mode</c> is <cr>enabled.</c>\n\n"
                 "This means that your stats will <cr>not</c> be saved.\n"
-                "This is done to prevent <cr>cheating.</c>\n\n"
+                "This is done to prevent <cr>cheating</c>.\n"
+                "You can disable this warning any time in <cg>settings</c>.\n\n"
                 "Would you like to play this level anyway?",
                 "No", "Yes",
-                [onYes, sender](auto, bool button2) {
+                [onYes](auto, bool button2) {
                     if (button2) {
-                        onYes(sender);
+                        onYes();
                         playRandomVoiceline();
                     }
                 }
             );
         }
         else {
-            onYes(sender);
+            onYes();
             playRandomVoiceline();
         }
     }

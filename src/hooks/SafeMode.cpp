@@ -18,7 +18,7 @@ class $modify(SMLevelInfoLayer, LevelInfoLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModeWarning([this, sender]() {
                 m_fields->m_shownPopup = true;
                 LevelInfoLayer::onPlay(sender);
             });
@@ -37,7 +37,7 @@ class $modify(SMLevelPage, LevelPage) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModeWarning([this, sender]() {
                 m_fields->m_shownPopup = true;
                 LevelPage::onPlay(sender);
             });
@@ -56,7 +56,7 @@ class $modify(SMEditLevelLayer, EditLevelLayer) {
 
     void onPlay(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModeWarning([this, sender]() {
                 m_fields->m_shownPopup = true;
                 EditLevelLayer::onPlay(sender);
             });
@@ -135,7 +135,7 @@ class $modify(SMLevelAreaInnerLayer, LevelAreaInnerLayer) {
 
     void onDoor(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModeWarning([this, sender]() {
                 m_fields->m_shownPopup = true;
                 LevelAreaInnerLayer::onDoor(sender);
             });
@@ -154,7 +154,7 @@ class $modify(SMSecretLayer2, SecretLayer2) {
 
     void onSecretLevel(CCObject* sender) {
         if (!m_fields->m_shownPopup) {
-            NegativeHitboxes::Utils::showSafeModePopup(sender, [this](auto sender) {
+            NegativeHitboxes::Utils::showSafeModeWarning([this, sender]() {
                 m_fields->m_shownPopup = true;
                 SecretLayer2::onSecretLevel(sender);
             });
